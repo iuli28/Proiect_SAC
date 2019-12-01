@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "restaurants")
@@ -18,12 +19,12 @@ public class Restaurant {
 	@NotEmpty
 	private String adress;
 	
-	@NotEmpty
+	@NotNull
 	private Double rating;
 	
 	private String site;
 	
-	@NotEmpty
+	@NotNull
 	private Integer numberReviews;
 	
 	public Restaurant() {}

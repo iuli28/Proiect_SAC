@@ -47,9 +47,7 @@ public class RestaurantParser {
 						Double.valueOf(line.get(5)), line.get(3), Integer.valueOf(line.get(6)));
 				
 				
-				if(restaurantRepository == null)
-					System.out.println(true);
-				
+				restaurantRepository.saveAndFlush(restaurant);			
 
 			}
 		}
