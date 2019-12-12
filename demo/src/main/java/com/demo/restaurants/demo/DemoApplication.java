@@ -21,7 +21,7 @@ public class DemoApplication {
 		
 	}
 	public void run(String... args) throws FileNotFoundException {
-		restaurantParser.parseCsv();
+		//restaurantParser.parseCsv();
     }
 
 }

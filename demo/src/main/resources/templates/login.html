@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="/css/login.css" rel="stylesheet">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<form method="POST">
+
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" th:field="*{user.userName}"  required>
+
+    <label for="psw"><b>Parola</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" th:field="*{user.pass}"  required>
+
+    <button type="submit">Login</button>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+  <a  href="/" class="cancelbtn btn-info" role="button">Anulare</a>
+   
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+</form>
+</html>

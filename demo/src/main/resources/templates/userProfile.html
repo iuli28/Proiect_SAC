@@ -1,0 +1,68 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link href="/css/userProfile.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/4.4.95/css/materialdesignicons.css">
+
+		<!-- partial -->
+		<div class="main-panel">
+			<div class="container">
+
+
+				<div class="row">
+					<div class="col-md-4 grid-margin stretch-card">
+						<div class="card">
+							<div class="profile-card">
+
+								<div class="profile-content">
+									<div class="profile-name" th:text="${user.userName}"></div>
+									<div class="profile-designation" th:text="${user.nume} + ' ' + ${user.prenume}"></div>
+									<ul class="profile-info-list">
+										<a href="/timeline" class="profile-info-list-item"><i class="mdi mdi-eye"></i>Timeline</a>
+										<a href="" class="profile-info-list-item"><i class="mdi mdi-bookmark-check"></i>Recommmand Me</a>
+										<a href="/top" class="profile-info-list-item"><i class="mdi mdi-movie"></i>Top 10 Restaurants</a>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-8 grid-margin stretch-card">
+						<div class="card">
+							<div class="card-body">
+								<p class="card-title font-weight-bold">About</p>
+								<hr>
+								<p class="card-description">User Information</p>
+								<ul class="about">
+									<li class="about-items"><i class="mdi mdi-account icon-sm "></i><span class="about-item-name">Name:</span><span class="about-item-detail" th:text="${user.nume} + ' ' + ${user.prenume}"></span><a href="" class="about-item-edit">Edit</a></li>
+									<li class="about-items"><i class="mdi mdi-mail-ru icon-sm "></i><span class="about-item-name">Username:</span><span class="about-item-detail" th:text="${user.userName}" ></span> <a href="" class="about-item-edit">Edit</a></li>
+                      
+								</ul>
+								<p class="card-description">Contact Information</p>
+								<ul class="about">
+									<li class="about-items"><i class="mdi mdi-phone icon-sm "></i><span class="about-item-name">Phone:</span><span class="about-item-detail"  th:text="${user.phone}" ></span><a href="" class="about-item-edit">Edit</a></li>
+									<li class="about-items"><i class="mdi mdi-map-marker icon-sm "></i><span class="about-item-name">Address:</span><span class="about-item-detail" th:text="${user.town} + ' ' + ${user.country}"></span> <a href="" class="about-item-edit">Edit</a></li>
+									<li class="about-items"><i class="mdi mdi-email-outline icon-sm "></i><span class="about-item-name">Email:</span><span class="about-item-detail"><a href=""  th:text="${user.email}" ></a></span> <a href="" class="about-item-edit">Edit</a></li>
+								</ul>
+								<p class="card-description">Basic Information</p>
+								<ul class="about">
+									<li class="about-items"><i class="mdi mdi-account icon-sm "></i><span class="about-item-name">Gender:</span><span class="about-item-detail">Male</span> <a href="" class="about-item-edit">Edit</a></li>
+									<li class="about-items"><i class="mdi mdi-clipboard-account icon-sm "></i><span class="about-item-name">Mancare Favorita:</span><span class="about-item-detail" th:text="${user.food}" >Student</span> <a href="" class="about-item-edit">Edit</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+
+
+			</div>
+			<!-- content-wrapper ends -->
+			<!-- partial:partials/_footer.html -->
+
+			<!-- partial -->
+		</div>
+		<!-- main-panel ends -->

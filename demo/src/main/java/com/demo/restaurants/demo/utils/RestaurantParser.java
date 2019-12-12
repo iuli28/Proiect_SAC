@@ -6,8 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.Entity;
@@ -29,6 +31,7 @@ public class RestaurantParser {
 	
 	@PostConstruct
 	public void parseCsv() throws FileNotFoundException {
+		Set<Restaurant> restaurants = new HashSet<Restaurant>();
 		String csvFile = "C:\\Users\\Iulian\\eclipse-workspace\\SAC\\Proiect_SAC\\demo\\src\\main\\resources\\static\\bot_maps_data.csv";
 
 		Scanner scanner = new Scanner(new File(csvFile));
@@ -47,11 +50,14 @@ public class RestaurantParser {
 						Double.valueOf(line.get(5)), line.get(3), Integer.valueOf(line.get(6)));
 				
 				
-				restaurantRepository.saveAndFlush(restaurant);			
+				restaurants.add(restaurant);	
 
 			}
 		}
-
+		for (Restaurant restaurant : restaurants) {
+			restaurantRepository.saveAndFlush(restaurant);
+		}
+		
 		scanner.close();
 
 		

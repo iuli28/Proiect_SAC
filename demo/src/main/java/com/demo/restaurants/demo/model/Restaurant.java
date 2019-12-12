@@ -1,7 +1,13 @@
 package com.demo.restaurants.demo.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -27,6 +33,9 @@ public class Restaurant {
 	@NotNull
 	private Integer numberReviews;
 	
+	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+	private Set<UserReview> userReview = new HashSet<>();
+	
 	public Restaurant() {}
 
 	public Restaurant(@NotEmpty Long id, @NotEmpty String name, @NotEmpty String adress, @NotEmpty Double rating,
@@ -38,6 +47,49 @@ public class Restaurant {
 		this.rating = rating;
 		this.site = site;
 		this.numberReviews = numberReviews;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((adress == null) ? 0 : adress.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((numberReviews == null) ? 0 : numberReviews.hashCode());
+		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Restaurant other = (Restaurant) obj;
+		if (adress == null) {
+			if (other.adress != null)
+				return false;
+		} else if (!adress.equals(other.adress))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (numberReviews == null) {
+			if (other.numberReviews != null)
+				return false;
+		} else if (!numberReviews.equals(other.numberReviews))
+			return false;
+		if (rating == null) {
+			if (other.rating != null)
+				return false;
+		} else if (!rating.equals(other.rating))
+			return false;
+		return true;
 	}
 
 	public Long getId() {
@@ -88,4 +140,12 @@ public class Restaurant {
 		this.numberReviews = numberReviews;
 	}
 
+	public Set<UserReview> getUserReview() {
+		return userReview;
+	}
+
+	public void setUserReview(Set<UserReview> userReview) {
+		this.userReview = userReview;
+	}
+	
 }
