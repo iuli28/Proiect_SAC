@@ -44,9 +44,9 @@
 								<div class="stars" >
 									<span th:each="i: ${#numbers.sequence(1, restaurant.rating + 0.5)}" class="glyphicon glyphicon-star"></span>
 								</div>
-								<p th:text="${restaurant.rating} + '/5'  ">
+								<h3 th:text="${restaurant.rating} + '/5'  ">
 									Average 4.5 <small> / </small> 5
-								</p>
+								</h3>
 							</div>
 					</a></li>
 				</ul>
@@ -61,10 +61,11 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Modal Header</h4>
+					<h4 class="modal-title">Acorda Rating</h4>
 				</div>
 				<div class="modal-body">
-					<p>Some text in the modal.</p>
+					<p>A fost cel mai bun restaurant, sau experienta a fost dezamgitoare? Acorda un rating pentru a putea
+					sa iti recomandam restaurante pe placul tau.</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

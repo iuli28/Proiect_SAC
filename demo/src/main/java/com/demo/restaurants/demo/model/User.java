@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,11 +16,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.JoinColumn;
 
 
 @Entity
 @Table(name = "users")
+@Transactional
 public class User {
 
 	@Id
@@ -47,14 +52,9 @@ public class User {
 	
 	private String town;
 	
-	private boolean gender;
-	
 	private String food;
 	
-	@Enumerated(EnumType.STRING)
-	private Roles role;
-	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private Set<UserReview> userReview = new HashSet<>();
 
 	public User() {}
@@ -64,23 +64,20 @@ public class User {
 		this.id = id;
 		this.userName = userName;
 		this.password = password;
-		this.role = role;
+
 	}
 
-	public User(Long id, @NotEmpty String userName, @NotEmpty String password, @NotEmpty String nume,
-			@NotEmpty String prenume, @NotEmpty String email, @NotEmpty String phone, Roles role) {
+	public User(@NotEmpty String userName, @NotEmpty String password, @NotEmpty String nume,
+			@NotEmpty String prenume, @NotEmpty String email, @NotEmpty String phone) {
 		super();
-		this.id = id;
 		this.userName = userName;
 		this.password = password;
 		this.nume = nume;
 		this.prenume = prenume;
 		this.email = email;
 		this.phone = phone;
-		this.role = role;
+
 	}
-	
-	
 
 	public User(Long id, @NotEmpty String userName, @NotEmpty String password, @NotEmpty String nume,
 			@NotEmpty String prenume, @NotEmpty String email, @NotEmpty String phone, String country, String town,
@@ -95,22 +92,16 @@ public class User {
 		this.phone = phone;
 		this.country = country;
 		this.town = town;
-		this.gender = gender;
 		this.food = food;
-		this.role = role;
 		this.userReview = userReview;
 	}
+	
+	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((nume == null) ? 0 : nume.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
-		result = prime * result + ((prenume == null) ? 0 : prenume.hashCode());
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}
@@ -124,36 +115,6 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (nume == null) {
-			if (other.nume != null)
-				return false;
-		} else if (!nume.equals(other.nume))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (phone == null) {
-			if (other.phone != null)
-				return false;
-		} else if (!phone.equals(other.phone))
-			return false;
-		if (prenume == null) {
-			if (other.prenume != null)
-				return false;
-		} else if (!prenume.equals(other.prenume))
-			return false;
 		if (userName == null) {
 			if (other.userName != null)
 				return false;
@@ -184,14 +145,6 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Roles getRole() {
-		return role;
-	}
-
-	public void setRole(Roles role) {
-		this.role = role;
 	}
 
 	public String getNume() {
@@ -250,13 +203,6 @@ public class User {
 		this.town = town;
 	}
 
-	public boolean isGender() {
-		return gender;
-	}
-
-	public void setGender(boolean gender) {
-		this.gender = gender;
-	}
 
 	public String getFood() {
 		return food;
@@ -266,4 +212,7 @@ public class User {
 		this.food = food;
 	}
 	
+	public void addUserReview(UserReview urReview) {
+		this.userReview.add(urReview);
+	}
 }

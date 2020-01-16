@@ -7,7 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.transaction.annotation.Transactional;
+
 @Entity
+@Transactional
 public class UserReview implements Serializable{
 	
 	@Id

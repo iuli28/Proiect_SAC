@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -12,8 +13,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.transaction.annotation.Transactional;
+
 @Entity
 @Table(name = "restaurants")
+@Transactional
 public class Restaurant {
 	
 	@Id
@@ -33,7 +37,7 @@ public class Restaurant {
 	@NotNull
 	private Integer numberReviews;
 	
-	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	private Set<UserReview> userReview = new HashSet<>();
 	
 	public Restaurant() {}

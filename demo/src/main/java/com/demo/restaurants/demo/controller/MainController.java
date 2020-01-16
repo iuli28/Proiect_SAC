@@ -21,6 +21,7 @@ import com.demo.restaurants.demo.model.Restaurant;
 import com.demo.restaurants.demo.model.User;
 import com.demo.restaurants.demo.repository.RestaurantRepository;
 import com.demo.restaurants.demo.repository.UserRepository;
+import com.demo.restaurants.demo.utils.ManhattenDistanceSimilarityExample;
 import com.demo.restaurants.demo.utils.RestaurantParser;
 
 @Controller
@@ -32,10 +33,15 @@ public class MainController {
 	@Autowired
 	private UserRepository userRepository; 
 	
+	@Autowired
+	private ManhattenDistanceSimilarityExample manhattenDistanceSimilarityExample; 
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String viewHome(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();  
 		session.invalidate();  
+		
+		manhattenDistanceSimilarityExample.runPrediciton();
 
 		return "home";
 	}
